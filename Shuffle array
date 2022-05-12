@@ -1,0 +1,40 @@
+class Solution {
+
+    int []  nums = null;
+    int [] duplicates = null;
+    Random ran = null;
+    
+    public Solution(int[] nums) {
+        this.nums = nums;
+        this.duplicates = Arrays.copyOf(nums, nums.length);
+        ran = new Random();
+    }
+    
+    public int[] reset() {
+        
+        duplicates = Arrays.copyOf(nums, nums.length);
+        return duplicates;
+    }
+    
+    public int[] shuffle() {
+        
+        for(int i = 0; i < duplicates.length; i++) {
+            
+            int x = ran.nextInt(duplicates.length-i);
+            int newx = i+x;
+            
+            //swap
+            int temp = duplicates[i];
+            duplicates[i] = duplicates[newx];
+            duplicates[newx] = temp;
+        }
+        return duplicates;
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(nums);
+ * int[] param_1 = obj.reset();
+ * int[] param_2 = obj.shuffle();
+ */
